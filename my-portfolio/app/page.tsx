@@ -1,7 +1,7 @@
 'use client'
 
 import type { FormEvent } from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 type IconName = 'arrow' | 'github' | 'linkedin' | 'download' | 'menu' | 'close' | 'code' | 'mail'
 
@@ -58,6 +58,7 @@ function SectionHeading({ title, text }: { title: string; text: string }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
+  const menuToggleRef = useRef<HTMLButtonElement>(null)
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -67,22 +68,41 @@ function App() {
   }
 
   return <div className="app">
+    <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="topbar">
       <div className="nav-inner">
         <Logo />
-        <nav className={menuOpen ? 'open' : ''} aria-label="Main navigation">
+        <nav
+          id="primary-navigation"
+          className={menuOpen ? 'open' : ''}
+          aria-label="Main navigation"
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') {
+              setMenuOpen(false)
+              menuToggleRef.current?.focus()
+            }
+          }}
+        >
           {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map(item =>
             <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>
           )}
         </nav>
         <a className="gradient-button nav-cta" href="#contact">Let's Talk <Icon name="arrow" size={16} /></a>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-label="Open menu">
+        <button
+          ref={menuToggleRef}
+          className="menu-toggle"
+          type="button"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-controls="primary-navigation"
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+        >
           <Icon name={menuOpen ? 'close' : 'menu'} size={22} />
         </button>
       </div>
     </header>
 
-    <main>
+    <main id="main-content">
       <section className="hero" id="home">
         <div className="hero-grid">
           <div className="hero-copy">
@@ -211,12 +231,12 @@ function App() {
           </div>
           <form onSubmit={submit}>
             <div className="field-row">
-              <label>Name *<input required placeholder="Your name" /></label>
-              <label>Email *<input required type="email" placeholder="you@example.com" /></label>
+              <label>Name *<input name="name" autoComplete="name" required placeholder="Your name" /></label>
+              <label>Email *<input name="email" autoComplete="email" required type="email" placeholder="you@example.com" /></label>
             </div>
             <div className="field-row">
-              <label>Subject *<input required placeholder="Select a subject" /></label>
-              <label>Message *<textarea required rows={4} placeholder="Your message..." /></label>
+              <label>Subject *<input name="subject" required placeholder="Select a subject" /></label>
+              <label>Message *<textarea name="message" required rows={4} placeholder="Your message..." /></label>
             </div>
             {sent && <p className="success">Message sent successfully.</p>}
             <button className="gradient-button" type="submit">Send Message</button>
