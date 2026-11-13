@@ -5,7 +5,7 @@ export type Project = {
   category: string
   description: string
   tags: string[]
-  images: string[]
+  image: string
   liveUrl: string
   codeUrl: string
 }
@@ -20,29 +20,11 @@ export const skillGroups = [
 
 export const projects = [
   {
-    title: 'Addis Eats',
-    category: 'Food Ordering Web Application · Next.js',
-    description: 'A food ordering platform featuring menu browsing, search and category filters, cart management, checkout, order workflows, and an administrative interface.',
-    tags: ['Next.js', 'React', 'JavaScript'],
-    images: ['/image/addiseatsnext1.png', '/image/addiseatsnxt2.png'],
-    liveUrl: 'https://addis-eats-next-two.vercel.app/',
-    codeUrl: 'https://github.com/rahelfikre2025-create',
-  },
-  {
-    title: 'Addis Eats',
-    category: 'Food Ordering Web Application · React',
-    description: 'A React version of the Addis Eats ordering experience, with food discovery, cart management, and an easy checkout flow.',
-    tags: ['React', 'JavaScript', 'CSS'],
-    images: ['/image/addiseatsreact1.png', '/image/addiseatsreact2.png'],
-    liveUrl: 'https://addis-eats-react-project.vercel.app/',
-    codeUrl: 'https://github.com/rahelfikre2025-create',
-  },
-  {
     title: 'Job Portal',
     category: 'Job Search Platform',
     description: 'A job portal that helps people explore opportunities and connect with relevant openings.',
     tags: ['React', 'JavaScript', 'Web Development'],
-    images: ['/image/jobportal1.png', '/image/jobportal2.png'],
+    image: '/image/jobportal.png',
     liveUrl: 'https://job-portal-z2uj.vercel.app/',
     codeUrl: 'https://github.com/rahelfikre2025-create',
   },
@@ -51,8 +33,26 @@ export const projects = [
     category: 'Peer-to-Peer Car Rental Platform',
     description: 'A car rental application for Addis Ababa, allowing renters to explore vehicles, submit booking requests, and manage reservations through role-specific dashboards.',
     tags: ['Next.js', 'React', 'JavaScript', 'Local Storage'],
-    images: ['/image/sheggarwheels1.png', '/image/sheggarwheels2.png'],
+    image: '/image/sheggarwheels2.png',
     liveUrl: 'https://sheggar-wheels-gules.vercel.app/',
+    codeUrl: 'https://github.com/rahelfikre2025-create',
+  },
+  {
+    title: 'Addis Eats Next.js',
+    category: 'Food Ordering Web Application',
+    description: 'A food ordering platform featuring menu browsing, search and category filters, cart management, checkout, order workflows, and an administrative interface.',
+    tags: ['Next.js', 'React', 'JavaScript'],
+    image: '/image/addiseatsnext1.png',
+    liveUrl: 'https://addis-eats-next-two.vercel.app/',
+    codeUrl: 'https://github.com/rahelfikre2025-create',
+  },
+  {
+    title: 'Addis Eats React',
+    category: 'Food Ordering Web Application',
+    description: 'A React version of the Addis Eats ordering experience, with food discovery, cart management, and an easy checkout flow.',
+    tags: ['React', 'JavaScript', 'CSS'],
+    image: '/image/addiseatsreact2.png',
+    liveUrl: 'https://addis-eats-react-project.vercel.app/',
     codeUrl: 'https://github.com/rahelfikre2025-create',
   },
 ] satisfies Project[]

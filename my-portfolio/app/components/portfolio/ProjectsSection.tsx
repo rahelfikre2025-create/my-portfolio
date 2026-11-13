@@ -4,22 +4,6 @@ import { useState } from 'react'
 import { projects } from './portfolio-data'
 import { SectionHeading } from './SectionHeading'
 
-function ProjectScreenshots({ title, images }: { title: string; images: string[] }) {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const changeImage = (direction: -1 | 1) => {
-    setActiveIndex((current) => (current + direction + images.length) % images.length)
-  }
-
-  return <div className="project-image">
-    <img src={images[activeIndex]} alt={`${title} screenshot ${activeIndex + 1}`} />
-    <div className="image-controls" aria-label={`${title} screenshots`}>
-      <button type="button" onClick={() => changeImage(-1)} aria-label={`Show previous ${title} screenshot`}>‹</button>
-      <span aria-live="polite">{activeIndex + 1} / {images.length}</span>
-      <button type="button" onClick={() => changeImage(1)} aria-label={`Show next ${title} screenshot`}>›</button>
-    </div>
-  </div>
-}
-
 export function ProjectsSection() {
   const [activeProjectIndex, setActiveProjectIndex] = useState(0)
 
@@ -39,7 +23,9 @@ export function ProjectsSection() {
     <div className="project-viewport" role="region" aria-roledescription="carousel" aria-label="Featured projects">
       <div className="project-track" style={{ transform: `translateX(-${activeProjectIndex * 100}%)` }}>
         {projects.map((project, index) => <article className="project-card" key={project.liveUrl} aria-roledescription="slide" aria-label={`${index + 1} of ${projects.length}: ${project.title}`} aria-hidden={activeProjectIndex !== index} inert={activeProjectIndex !== index}>
-          <ProjectScreenshots title={`${project.title} ${project.category.split('·').at(-1)?.trim() ?? ''}`} images={project.images} />
+          <div className="project-image">
+            <img src={project.image} alt={`${project.title} — ${project.category}`} />
+          </div>
           <div className="project-body">
             <h3>{project.title}</h3><small>{project.category}</small>
             <p>{project.description}</p>
