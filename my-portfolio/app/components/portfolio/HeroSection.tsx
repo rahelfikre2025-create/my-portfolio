@@ -12,7 +12,7 @@ export function HeroSection() {
           <a className="gradient-button" href="#projects">Explore My Projects <Icon name="arrow" size={17} /></a>
           <a className="outline-button" href="#contact">Let’s Connect</a>
         </div>
-        <a className="download-link" href="#contact"><Icon name="download" size={17} /> Download CV</a>
+        <a className="download-link" href="/Rahel_Fikre_CV.pdf" download="Rahel_Fikre_CV.pdf"><Icon name="download" size={17} /> Download CV</a>
         <div className="social-row">
           <a href="https://github.com/rahelfikre2025-create" aria-label="GitHub" target="_blank" rel="noreferrer"><Icon name="github" /></a>
           <a href="https://www.linkedin.com/in/rahel-fikre-coque127" aria-label="LinkedIn" target="_blank" rel="noreferrer"><Icon name="linkedin" /></a>
